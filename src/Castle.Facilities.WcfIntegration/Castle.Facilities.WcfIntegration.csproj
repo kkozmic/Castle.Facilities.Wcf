@@ -156,8 +156,11 @@
     <Compile Include="AbstractWcfPolicy.cs" />
     <Compile Include="Client\WcfClientFactorySelector.cs" />
     <Compile Include="Internal\ConcurrentDictionary.cs" />
+    <Compile Include="IWcfChannelExtension.cs" />
+    <Compile Include="IWcfEndpointExtension.cs" />
     <Compile Include="IWcfPolicy.cs" />
     <Compile Include="IWcfCleanUp.cs" />
+    <Compile Include="IWcfServiceExtension.cs" />
     <Compile Include="Lifestyles\AbstractWcfLifestyleCache.cs" />
     <Compile Include="Lifestyles\IWcfLifestyle.cs" />
     <Compile Include="Lifestyles\IOperationContextProvider.cs" />

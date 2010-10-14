@@ -14,29 +14,13 @@
 
 namespace Castle.Facilities.WcfIntegration
 {
-	using System.ServiceModel;
-	using System.ServiceModel.Description;
 	using Castle.Core;
 	using Castle.MicroKernel;
 
 	public interface IWcfExtension
 	{
 		void Accept(IWcfExtensionVisitor visitor);
+
 		void AddDependencies(IKernel kernel, ComponentModel model);
-	}
-
-	public interface IWcfServiceExtension : IWcfExtension
-	{
-		void Install(ServiceHost serviceHost, IKernel kernel, IWcfBurden burden);
-	}
-
-	public interface IWcfChannelExtension : IWcfExtension
-	{
-		void Install(ChannelFactory channelFactory, IKernel kernel, IWcfBurden burden);
-	}
-
-	public interface IWcfEndpointExtension : IWcfExtension
-	{
-		void Install(ServiceEndpoint endpoint, bool withContract, IKernel kernel, IWcfBurden burden);
 	}
 }

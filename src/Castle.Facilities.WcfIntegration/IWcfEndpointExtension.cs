@@ -14,19 +14,12 @@
 
 namespace Castle.Facilities.WcfIntegration
 {
-	using System;
+	using System.ServiceModel.Description;
 
-	/// <summary>
-	///   Base implementation for <see cref = "IWcfPolicy" />
-	///   The lower the <see cref = "ExecutionOrder" /> the higher priority.
-	/// </summary>
-	public abstract class AbstractWcfPolicy : IWcfPolicy
+	using Castle.MicroKernel;
+
+	public interface IWcfEndpointExtension : IWcfExtension
 	{
-		public AbstractWcfPolicy()
-		{
-			ExecutionOrder = Int32.MaxValue;
-		}
-
-		public int ExecutionOrder { get; set; }
+		void Install(ServiceEndpoint endpoint, bool withContract, IKernel kernel, IWcfBurden burden);
 	}
 }
