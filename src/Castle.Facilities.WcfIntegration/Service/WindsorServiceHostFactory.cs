@@ -35,7 +35,7 @@ namespace Castle.Facilities.WcfIntegration
 		{
 			if (kernel == null)
 			{
-				string message = "Kernel was null, did you forgot to call DefaultServiceHostFactory.RegisterContainer() ?";
+				string message = "Kernel was null, did you forget to call DefaultServiceHostFactory.RegisterContainer() ?";
 				throw new ArgumentNullException("kernel", message);
 			}
 
