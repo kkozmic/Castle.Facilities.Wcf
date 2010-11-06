@@ -41,7 +41,7 @@ namespace Castle.Facilities.WcfIntegration.Async
 			if (channelHolder == null)
 			{
 				throw new ArgumentException(
-					"The given proxy is not supported.  Did you create it using the WcfFacility? " +
+					"The given proxy is not supported. Did you create it using the WcfFacility? " +
 					"If the answer is yes, this is probably a bug so please report it.");
 			}
 
@@ -73,14 +73,12 @@ namespace Castle.Facilities.WcfIntegration.Async
 		{
 			context.Init(invocation.Method, invocation.Arguments);
 
-			Action beginAction = () =>
+			PerformInvocation(context.ChannelHolder, invocation, wcfInvocation =>
 			{
-				var message = context.CreateBeginMessage();
-				var returnMessage = context.ChannelHolder.RealProxy.Invoke(message) as IMethodReturnMessage;
-				invocation.ReturnValue = context.PostProcess(returnMessage);
-			};
-
-			ApplyActionPolicy(context.ChannelHolder, invocation, beginAction);
+				var callMessage = context.CreateBeginMessage();
+				var returnMessage = context.ChannelHolder.RealProxy.Invoke(callMessage) as IMethodReturnMessage;
+				wcfInvocation.ReturnValue = context.PostProcess(returnMessage);
+			});
 		}
 
 		public TResult EndCall<TResult>(AsyncWcfCallContext context, out object[] outs)

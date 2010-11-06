@@ -56,7 +56,7 @@ namespace Castle.Facilities.WcfIntegration
 			set { defaultBinding = value; }
 		}
 
-		public IChannelActionPolicy DefaultChannelPolicy { get; set; }
+		public IWcfPolicy DefaultChannelPolicy { get; set; }
 
 		internal ProxyGenerator ProxyGenerator
 		{

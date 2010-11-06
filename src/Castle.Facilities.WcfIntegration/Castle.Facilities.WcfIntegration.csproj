@@ -120,10 +120,9 @@
     <Compile Include="Client\Discovery\DiscoveredEndpointMetadata.cs" />
     <Compile Include="Client\IWcfClientFactory.cs" />
     <Compile Include="Client\Policies\ChannelReconnectPolicy.cs" />
-    <Compile Include="Client\Policies\IChannelActionPolicy.cs" />
-    <Compile Include="Client\Policies\IRefreshChannelPolicy.cs" />
     <Compile Include="Client\Policies\IWcfChannelPolicy.cs" />
     <Compile Include="Client\Proxy\IWcfChannelHolder.cs" />
+    <Compile Include="WcfInvocation.cs" />
     <Compile Include="Client\Proxy\WcfProxyFactory.cs" />
     <Compile Include="Client\Async\WcfAsync.cs" />
     <Compile Include="Client\Async\WcfRemotingAsyncInterceptor.cs" />

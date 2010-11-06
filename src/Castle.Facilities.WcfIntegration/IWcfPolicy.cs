@@ -20,5 +20,7 @@ namespace Castle.Facilities.WcfIntegration
 	public interface IWcfPolicy
 	{
 		int ExecutionOrder { get; }
+
+		void Apply(WcfInvocation wcfInvocation);
 	}
 }

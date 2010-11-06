@@ -14,8 +14,6 @@
 
 namespace Castle.Facilities.WcfIntegration
 {
-	using System;
-	using System.Reflection;
 	using System.ServiceModel;
 	using System.ServiceModel.Security;
 
@@ -25,16 +23,21 @@ namespace Castle.Facilities.WcfIntegration
 	/// handle situations in which a connection has been reset on the
 	/// server which invalidates the the client channel.
 	/// </summary>
-	public class ChannelReconnectPolicy : AbstractWcfPolicy, IChannelActionPolicy
+	public class ChannelReconnectPolicy : AbstractWcfPolicy
 	{
 		/// <inheritdoc />
-		public bool Perform(IWcfChannelHolder channelHolder, MethodInfo method, Action action)
+		public override void Apply(WcfInvocation wcfInvocation)
 		{
-			bool reconnect = false;
+			var channelHolder = wcfInvocation.ChannelHolder;
+			if (channelHolder.IsChannelUsable == false)
+			{
+				channelHolder.RefreshChannel();
+			}
 
+			var reconnect = false;
 			try
 			{
-				action();
+				wcfInvocation.Proceed();
 			}
 			catch (ChannelTerminatedException)
 			{
@@ -64,10 +67,8 @@ namespace Castle.Facilities.WcfIntegration
 			if (reconnect)
 			{
 				channelHolder.RefreshChannel();
-				action();
+				wcfInvocation.Proceed();
 			}
-
-			return true;
 		}
 	}
 }
